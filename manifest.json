@@ -4,9 +4,11 @@
   "start_url": ".",
   "display": "standalone",
   "background_color": "#fff",
+  "theme_color": "#fff",
+  "orientation": "any",
   "description": "A simple Hammer Game.",
   "icons": [{
-    "src": "clown.png",
+    "src": "nomore.png",
     "sizes": "48x48 72x72 96x96 128x128 144x144 168x168 192x192 256x256",
     "type": "image/png"
   }]
