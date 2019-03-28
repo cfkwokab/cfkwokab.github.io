@@ -5,6 +5,22 @@
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <link rel="manifest" href="/manifest.json">
     <script>
+        if ('serviceWorker' in navigator) {
+    window.addEventListener('load', function () {
+        navigator.serviceWorker.register('/sw.js', {scope: '/'})
+            .then(function (registration) {
+
+                // 注册成功
+                console.log('ServiceWorker registration successful with scope: ', registration.scope);
+            })
+            .catch(function (err) {
+
+                // 注册失败:(
+                console.log('ServiceWorker registration failed: ', err);
+            });
+    });
+}
+        
     var timeRemaining = 3;          // Amount of time remaining for the countDown
 
     var timeToShowMonster = 2000;   // Amount of time to show the monster
