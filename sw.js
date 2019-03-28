@@ -3,7 +3,12 @@ var urlsToCache = [
   '/',
   '/index.html',
   '/nomore.png',
-  '/clown.png'
+  '/clown.png',
+  '/manifest.json',
+  '/favicon.ico',
+  'https://code.jquery.com/jquery-3.3.1.min.js',
+  'https://fonts.googleapis.com/css?family=Gloria+Hallelujah',
+  'https://fonts.gstatic.com/s/gloriahallelujah/v10/LYjYdHv3kUk9BMV96EIswT9DIbW-MIS11zM.woff2'
 ];
 
 self.addEventListener('install', function(event) {
