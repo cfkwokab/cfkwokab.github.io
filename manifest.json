@@ -8,11 +8,11 @@
   "orientation": "any",
   "description": "A simple Hammer Game.",
   "icons": [{
-    "src": "icon.svg",
+    "src": "icon.png",
     "sizes": "48x48 72x72 96x96 128x128"
   },
     {
-    "src": "icon.svg",
-    "sizes": "144x144 168x168 192x192 256x256"
-}]
+      "src": "icon.png",
+      "sizes": "144x144 168x168 192x192 256x256"
+    }]
 }
