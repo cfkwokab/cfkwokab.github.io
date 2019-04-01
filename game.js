@@ -31,7 +31,7 @@ function setTimers() {
         lines = data.split('\n');
         console.log(lines);
         console.log(lines.length);
-    for (var i=0; i<lines.length-1; ++i){
+    for (var i=0; i<lines.length; ++i){
         showGlowArray.push(lines[i]-200);
         showTimeArray.push(lines[i]-600);
         console.log("push");
