@@ -96,7 +96,7 @@ function showMonster() {
     count = count + 1;
     document.getElementById("count").textContent = "COUNT: "+count;
     if (missed==true&&poping==false) {document.getElementById("monster").classList.add("vivid");popMonster();}
-    else if (poping ==false){
+    else {
     getrandomnumber();
     console.log(random_number);
     last_div = random_number;
