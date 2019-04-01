@@ -32,8 +32,8 @@ function setTimers() {
         console.log(lines);
         console.log(lines.length);
     for (var i=0; i<lines.length-1; ++i){
-        showGlowArray.push(lines[i]-400);
-        showTimeArray.push(lines[i]-200);
+        showGlowArray.push(lines[i]-200);
+        showTimeArray.push(lines[i]-600);
         console.log("push");
     }
     for (var i=0; i<showTimeArray.length; ++i){
@@ -98,7 +98,6 @@ function showMonster() {
     if (missed==true&&poping==false) {document.getElementById("monster").classList.add("vivid");popMonster();}
     else {
     getrandomnumber();
-    console.log(random_number);
     last_div = random_number;
     var random_div = $(".hole").eq(random_number);
     $(".monster").appendTo(random_div);
