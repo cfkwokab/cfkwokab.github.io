@@ -104,13 +104,12 @@ function showMonster() {
     $(".monster").appendTo(random_div);
     // Show the monster
     document.getElementById("monster").classList.remove("vivid");
-    if (count != 10000) {
         killed = false;
         setTimeout(function(){document.getElementById("monster").classList.add("vivid");},1)
         d = new Date();
         n = d.getTime();}
-        missed = true;
-    }
+        //missed = true;
+
     // Hide the monster later
 
 }
