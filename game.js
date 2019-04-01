@@ -33,7 +33,7 @@ function setTimers() {
         console.log(lines.length);
     for (var i=0; i<lines.length; ++i){
         showGlowArray.push(lines[i]-200);
-        showTimeArray.push(lines[i]-600);
+        showTimeArray.push(lines[i]-800);
         console.log("push");
     }
     for (var i=0; i<showTimeArray.length; ++i){
