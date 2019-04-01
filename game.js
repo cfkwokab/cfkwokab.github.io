@@ -1,5 +1,5 @@
 
-var timeRemaining = 7;          // Amount of time remaining for the countDown
+var timeRemaining = 3;          // Amount of time remaining for the countDown
 
 var timeToShowMonster = 469;   // Amount of time to show the monster
 var timeToHideMonster = 469;   // Amount of time to hide the monster
@@ -8,89 +8,150 @@ var hideMonsterTimeout;         // Timeout id for hiding the monster
 
 var life = 3;                   // The player's life
 
-var pop = false;
+var poping = false;
 var scaleing = 0.2;
 var popTime = 200;
 var random_number = 0;
 var last_div = 0;
 
 var count = 0;
+var missed = false;
 var d = new Date();
 var n = d.getTime();
 var score = 0;
 var killed = false;
+var progresss = 0;
+var showGlowArray = []
+var showTimeArray = []
+var timerArray = [];
+
+function setTimers() {
+    $.get('time.txt',  function(data){
+        var lines = data.split('\r\n');
+        console.log(lines);
+    }, "text");
+    var time = 5623;
+    var mtime = 5223;
+    for (var i=0; i<103; ++i){
+        showGlowArray.push(time);
+        showTimeArray.push(mtime);
+        time+=950;mtime+=940;
+    }
+    for (var i=0; i<showTimeArray.length; ++i){
+        timerArray.push(setTimeout(glow, showGlowArray[i]));
+        timerArray.push(setTimeout(showMonster, showTimeArray[i]));
+    }
+}
+
+
 
 function hideMonster() {
-    $("#monster").hide();
+    $(".monster").hide();
     popMonster();
     // Hide the monster
     
 
     // Show the monster later again
-    if(life!=0 && pop == false && count<103)hideMonsterTimeout = setTimeout(showMonster, timeToShowMonster);
+
 }
 
 function gameover() {
+    life -= 1; $("#gameOver").fadeIn(1000); 
+    for (var i=0; i<timerArray.length; ++i){
+        clearTimeout(timerArray[i]);
+    }
+    document.getElementById("myAudio").pause();
 }
 
 function popMonster() {
+    /*poping = true;
+    missed=false;
+    $("#monster").center();
+    $("#monster").css( 'transform', 'scale(' + scaleing + ',' + scaleing + ')');
+    scaleing = scaleing + 0.1;
+    if (scaleing <= 0.19) {
+        $("#monster").restorem();
+    }
+    else if (scaleing > 3.0) gameover();
+    else setTimeout(popMonster, 200);*/
 }
 
-function randomdiv() {
+function getrandomnumber() {
     if ($(window).width() < 900) random_number = Math.random() * 4;
     else random_number = Math.random() * 9;
     random_number = Math.floor(random_number);
-    if (random_number == last_div) randomdiv();
+    if (random_number == last_div) getrandomnumber();
 }
-
+function glow() {
+    if (count != 8 && count != 24 && count != 40 && count != 56 && count != 72 && count != 88) {
+        $("#container").css("box-shadow", "inset 0px 0px 50px 50px rgba(255,255,0,0.6)");
+        setTimeout(function(){$("#container").css("box-shadow", "inset 0px 0px 0px 0px rgba(255,255,0,0)");}, 400);
+    }
+}
 function showMonster() {
     // Find the target div randomly and move the monster
     // to that div
-    randomdiv();
+    count = count + 1;
+    if (missed==true&&poping==false) {document.getElementById("monster").classList.add("vivid");popMonster();}
+    else if (poping ==false){
+    getrandomnumber();
     last_div = random_number;
     var random_div = $(".hole").eq(random_number);
-    $("#monster").appendTo(random_div);
-    $("#monster").show("fade", 800);
+    $(".monster").appendTo(random_div);
     // Show the monster
-    count = count + 1;
-    if (count != 8 || count != 24 || count != 40 || count != 56 || count != 72 || count != 88) {
+    document.getElementById("monster").classList.remove("vivid");
+    if (count != 8 && count != 24 && count != 40 && count != 56 && count != 72 && count != 88) {
         killed = false;
-        /*$("#monster").css("filter", "grayscale(0%)");*/
+        setTimeout(function(){document.getElementById("monster").classList.add("vivid");},1)
         d = new Date();
-        n = d.getTime();
-}
-    if (count == 8 ||count == 24 || count == 40 || count == 56 || count == 72 || count == 88) $("#monster").hide();
-    document.getElementById("count").textContent = "PROGRESS: "+count;
-    $(".determinate").css("width", count+"%");
+        n = d.getTime();}
+        missed = true;
+    }
     // Hide the monster later
-    hideMonsterTimeout = setTimeout(hideMonster, timeToHideMonster);
+
 }
 
-function killMonster() {
+function addScore() {
         // - Clear the previous timeout
     // - Hide the monster
-    if (killed == false) {
-        $("#monster").hide();
+    /*if (killed == false) {
+        document.getElementById("monster").classList.remove("vivid");
     killed = true;
     d = new Date();
     var differencet = d.getTime() - n;
     score = score + 1000 - differencet;
     document.getElementById("score").textContent = "SCORE: "+score;
         // - Show the monster later again
-    }
+    }*/
+    var d2 = new Date();
+    var n2 = d2.getTime();
+    c = n2-n;
+    console.log(c);
+    var earn = 0;
+    if (c>400) earn = 400/c*100;
+    else if (c<400) earn = c/400*100;
+    else if (c==400) earn = 10000;
+    score = score + earn;
+    earn = Math.floor(earn);
+    document.getElementById("count").textContent = "EARN: "+earn;
+    score = Math.floor(score);
+    document.getElementById("score").textContent = "SCORE: "+score;
 }
 
 function startGame() {
     // Hide the countDown timer 
     $("#countDown").slideUp(400);
     // Show the monster the first time
-    hideMonsterTimeout = setTimeout(showMonster, 1000);
+    d = new Date();
+    n = d.getTime();
+    setTimers();
     // Set up the click handler of the monster
-    $("#monster").on("click", function () {
-        if (pop == false) { killMonster(); document.getElementById("hit").play();}
-        else if (pop == true) {
-            scaleing = scaleing - 0.18;
-            $("#monster").css('transform', 'scale(' + scaleing + ',' + scaleing + ')');
+    $(".monster").on("click", function () {
+        if (poping == false) { missed=false; addScore();
+    }
+        else if (poping == true) {
+            scaleing = scaleing - 0.15;
+            $(".monster").css('transform', 'scale(' + scaleing + ',' + scaleing + ')');
         }
     });
 }
@@ -98,7 +159,7 @@ function startGame() {
 function countDown() {
     document.getElementById("myAudio").play();
     // Decrease the remaining time
-    
+    document.getElementById("monster").classList.add("vivid");
     timeRemaining = timeRemaining -1;
     if (timeRemaining == 0) {
         document.getElementById("countDown").textContent = "Start"; 
@@ -136,13 +197,12 @@ jQuery.fn.restorem = function () {
     this.css("transform", "scale(1,1)");
     scaleing = 0.2;
     popTime = popTime - 100;
-    pop = false;
+    poping = false;
     return this;
 }
 
-$(document).ready(function () {
-    $("#monster").appendTo('#game-area');
-    $('#monster').clickFireworks();
+$(document).ready(function () { 
+    $('.monster').clickFireworks();
     if ($(window).width() < 900) {       // if width is less than 600px
         $(".hole")[8].remove();
         $(".hole")[7].remove();
@@ -186,5 +246,8 @@ $(document).on("keydown", function (e) {
     }
     if (e.keyCode == 99) {
         if ($(".hole").eq(8).children().length) { pressFireworks(); killMonster(); };
+    }
+    if (e.keyCode == 27) {
+        gameover();
     }
 });

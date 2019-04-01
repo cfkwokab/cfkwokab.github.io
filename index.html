@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
     <title>Hammer Game!</title>
     <link rel='shortcut icon' type='image/x-icon' href='favicon.ico' />
     <link rel="manifest" href="manifest.json">
@@ -47,28 +48,6 @@
             background-color: rgba(0, 0, 0, 0.8);
         }
 
-        @keyframes colorchange {
-            0% {
-                background-color: rgba(46, 49, 49, 0.9);
-            }
-
-            25% {
-                background-color: rgba(103, 65, 114, 0.9);
-            }
-
-            50% {
-                background-color: rgba(1, 50, 67, 0.9);
-            }
-
-            75% {
-                background-color: rgba(30, 130, 76, 0.9);
-            }
-
-            100% {
-                background-color: rgba(46, 49, 49, 0.9);
-            }
-        }
-
         #intro {
             position: absolute;
             left: 0;
@@ -78,7 +57,7 @@
             padding: 0;
             text-align: center;
             color: white;
-            background-color: rgba(0, 0, 0, 0.9);
+            background-color: #009688;
             display: block;
         }
 
@@ -168,35 +147,36 @@
         }
 
         /* - Set the style of the monster image */
-        #monster {
-            display: none;
-            width: 100%;
-            filter: grayscale(0%);
-            transition: filter 0.3s;
+        
+        .monster {
+            width: 0%;
+            user-select: none;
         }
+        .vivid {
+            width: 100%; 
+        }
+        
 
         .waves-effect.waves-orange-solid .waves-ripple {
             background-color: rgba(255, 152, 0, 0.9);
         }
+        #icon {
+            filter:drop-shadow(3px 3px 3px rgba(0,0,0,0.2));
+        }
     </style>
-    <script>
-        $(document).ready(function () {
-            $('.tooltipped').tooltip();
-        });
-    </script>
 </head>
 <body>
-    <div class="progress" style="margin:0 auto;">
-        <div class="determinate" style="width: 0%; max-width:100%;"></div>
+    
+  <div class="progress" style="margin: 0 0 0 0;">
+        <div class="determinate" style="width: 0%;"></div>
     </div>
     <!-- This div contains all holes -->
     <p style="color: orange; font-size: 5vw; font-weight: bold;position:fixed;left:5%;top:0%;margin:0px;" id="score">SCORE: 0</p>
     <p id="count" style="color: orange; font-size: 5vw; font-weight: bold;position:fixed;right:5%;top:0%;margin:0px;">PROGRESS: 0</p>
     <!-- This is the monster -->
-    <img id="monster" src="nomore.png" alt="Nomore monster">
     <div id="container">
         <div id="game-area">
-            <div class="hole"></div>
+            <div class="hole"><img class="monster" id="monster" src="nomore.png" alt="Nomore monster" draggable="false"></div>
             <div class="hole"></div>
             <div class="hole"></div>
             <div class="hole"></div>
@@ -208,18 +188,19 @@
         </div>
     </div>
     <!-- The Intro screen-->
-    <div id="intro" class="waves-effect waves-orange-solid">
-        <nav class="nav-extended">
-            <div class="nav-content">
-                <span class="nav-title">Hammer Game</span>
-                <a class="btn-floating btn-large halfway-fab orange add-button tooltipped disabled" data-position="left" data-tooltip="Add to home screen">
-                    <i class="material-icons">get_app</i>
-                </a>
+    <div id="intro" class="">
+        <img id="icon" class="icon-scale-transition scale-transition scale-out" src="iconbw.svg" style="height: 50vmin;">
+        <button class="start-button  btn-large teal lighten-2 waves-effect waves-light" style="display: none;position: absolute;bottom: 10vh; left: 50%; transform: translateX(-50%);height: 14vmin;line-height: 14vmin;font-size: 4vmin;padding: 0 2.5vw;" onclick="start()"><i style="font-size: 8vmin;" class="material-icons left">play_arrow</i>START PLAYING</button>
+        <a class="waves-effect waves-light btn-flat disabled add-button" style="display: none;position: absolute;bottom: 4vh;left: 50%;transform: translateX(-50%);font-size: 3vmin;color: white;line-height: 6vmin;height: 6vmin;padding: 0 2vw;" >Install</a>
+        <div class="preloader-wrapper active" id="preloader">
+            <div class="spinner-layer spinner-yellow-only">
+                <div class="circle-clipper left"><div class="circle"></div></div>
+                <div class="gap-patch"><div class="circle"></div></div>
+                <div class="circle-clipper right"><div class="circle"></div></div>
             </div>
-        </nav>
-        <p>This is a very simple Hammer Game.</p>
-        <button class="start-button  btn-large orange darken-2" onclick="start()"><i class="material-icons left">play_arrow</i>START PLAYING</button>
+        </div>
     </div>
+
     <!-- The countDown screen -->
     <div id="countDown">7</div>
     <!-- The gameOver screen -->
@@ -238,11 +219,13 @@
         Your browser does not support the audio element.
     </audio>
 
+    <script src="Splash.js"></script>
     <script src="regSW.js"></script>
 
 
 
     <script src="installbutton.js" defer></script>
+    <!--
     <script src="https://www.gstatic.com/firebasejs/5.9.2/firebase.js"></script>
     <script>
         // Initialize Firebase
@@ -257,21 +240,30 @@
         firebase.initializeApp(config);
 
         function saveToFirebase(email) {
-            var emailObject = {
-                email: email
-            };
+            
 
-            firebase.database().ref('subscription-entries').push().set(emailObject)
-                .then(function (snapshot) {
-                    //success(); // some success method
-                }, function (error) {
-                    console.log('error' + error);
-                    //error(); // some error method
+            // Add a new document in collection "cities"
+            firebase.firestore().collection("Leaderboard").doc("Wendy").set({
+                name: "Wendy",
+                score: "20000",
+            })
+                .then(function () {
+                    console.log("Document successfully written!");
+                })
+                .catch(function (error) {
+                    console.error("Error writing document: ", error);
                 });
         }
         email = "ff@gmail.com"
         saveToFirebase(email);
-    </script>
+        firebase.firestore().collection("Leaderboard").get().then(function (querySnapshot) {
+            querySnapshot.forEach(function (doc) {
+                // doc.data() is never undefined for query doc snapshots
+                console.log(doc.id, " => ", doc.data());
+            });
+        });
+
+    </script>-->
 </body >
    
    
