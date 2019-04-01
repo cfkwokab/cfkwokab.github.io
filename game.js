@@ -30,8 +30,6 @@ function setTimers() {
     $.get('time.txt',  function(data){
         lines = data.split('\n');
         console.log(lines);
-    }, "text");
-    setTimeout(function(){
         console.log(lines.length);
     for (var i=0; i<lines.length-1; ++i){
         showGlowArray.push(lines[i]);
@@ -42,7 +40,8 @@ function setTimers() {
         timerArray.push(setTimeout(glow, showGlowArray[i]));
         timerArray.push(setTimeout(showMonster, showTimeArray[i]));
     }
-    }, 1)
+    }, "text");
+
     
 }
 
