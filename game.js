@@ -24,18 +24,16 @@ var progresss = 0;
 var showGlowArray = []
 var showTimeArray = []
 var timerArray = [];
+var lines = [];
 
 function setTimers() {
     $.get('time.txt',  function(data){
-        var lines = data.split('\r\n');
+        lines = data.split('\n');
         console.log(lines);
     }, "text");
-    var time = 5623;
-    var mtime = 5223;
-    for (var i=0; i<103; ++i){
-        showGlowArray.push(time);
-        showTimeArray.push(mtime);
-        time+=950;mtime+=940;
+    for (var i=0; i<lines.length; ++i){
+        showGlowArray.push(lines[i]);
+        showTimeArray.push(lines[i]-200);
     }
     for (var i=0; i<showTimeArray.length; ++i){
         timerArray.push(setTimeout(glow, showGlowArray[i]));
@@ -92,6 +90,7 @@ function showMonster() {
     // Find the target div randomly and move the monster
     // to that div
     count = count + 1;
+    document.getElementById("count").textContent = "COUNT: "+count;
     if (missed==true&&poping==false) {document.getElementById("monster").classList.add("vivid");popMonster();}
     else if (poping ==false){
     getrandomnumber();
@@ -100,7 +99,7 @@ function showMonster() {
     $(".monster").appendTo(random_div);
     // Show the monster
     document.getElementById("monster").classList.remove("vivid");
-    if (count != 8 && count != 24 && count != 40 && count != 56 && count != 72 && count != 88) {
+    if (count != 10000) {
         killed = false;
         setTimeout(function(){document.getElementById("monster").classList.add("vivid");},1)
         d = new Date();
@@ -159,7 +158,6 @@ function startGame() {
 function countDown() {
     document.getElementById("myAudio").play();
     // Decrease the remaining time
-    document.getElementById("monster").classList.add("vivid");
     timeRemaining = timeRemaining -1;
     if (timeRemaining == 0) {
         document.getElementById("countDown").textContent = "Start"; 
