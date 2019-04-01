@@ -85,7 +85,7 @@ function getrandomnumber() {
     if (random_number == last_div) getrandomnumber();
 }
 function glow() {
-    if (count != 8 && count != 24 && count != 40 && count != 56 && count != 72 && count != 88) {
+    if (count != 1000) {
         $("#container").css("box-shadow", "inset 0px 0px 50px 50px rgba(255,255,0,0.6)");
         setTimeout(function(){$("#container").css("box-shadow", "inset 0px 0px 0px 0px rgba(255,255,0,0)");}, 400);
     }
