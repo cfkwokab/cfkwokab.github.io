@@ -145,15 +145,20 @@
             border-radius: 15px;
             background: black;
         }
+        .hole:hover {
+            transform: translateZ(5px);
+        }
 
         /* - Set the style of the monster image */
         
         .monster {
-            width: 0%;
             user-select: none;
+            transform: scale(0);
+            width: 100%;
+            transition: all 0.2s;
         }
-        .vivid {
-            width: 100%; 
+        .unhide {
+            transform: scale(1);
         }
         
 
@@ -202,7 +207,7 @@
     </div>
 
     <!-- The countDown screen -->
-    <div id="countDown">7</div>
+    <div id="countDown">3</div>
     <!-- The gameOver screen -->
     <div id="gameOver">Game Over</div>
 
