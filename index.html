@@ -217,66 +217,101 @@
     <!-- The countDown screen -->
     <div id="countDown">3</div>
     <!-- The gameOver screen -->
-    <div id="gameOver">Game Over</div>
-
-    <audio id="myAudio">
-        <source src="music.wav" type="audio/mpeg" />
-        Your browser does not support the audio element.
-    </audio>
-    <audio id="pop">
-        <source src="pop.m4a" type="audio/mpeg" />
-        Your browser does not support the audio element.
-    </audio>
-    <audio id="hit">
-        <source src="hit.wav" type="audio/mpeg" />
-        Your browser does not support the audio element.
-    </audio>
-
-    <script src="Splash.js"></script>
-    <script src="regSW.js"></script>
-
-
-
-    <script src="installbutton.js" defer></script>
-    <!--
-    <script src="https://www.gstatic.com/firebasejs/5.9.2/firebase.js"></script>
-    <script>
-        // Initialize Firebase
-        var config = {
-            apiKey: "AIzaSyCSyyO0guTaCQuw_GQWpckbppuTrtSa2SA",
-            authDomain: "comp4021-ced8f.firebaseapp.com",
-            databaseURL: "https://comp4021-ced8f.firebaseio.com",
-            projectId: "comp4021-ced8f",
-            storageBucket: "comp4021-ced8f.appspot.com",
-            messagingSenderId: "236261422204"
-        };
-        firebase.initializeApp(config);
-
-        function saveToFirebase(email) {
-            
-
-            // Add a new document in collection "cities"
-            firebase.firestore().collection("Leaderboard").doc("Wendy").set({
-                name: "Wendy",
-                score: "20000",
-            })
-                .then(function () {
-                    console.log("Document successfully written!");
+    <div id="gameOver">
+            <div id="leaderboard-container" class="z-depth-3" style="border-radius: 2px;font-size:6vmin;color: black;text-align: left;width:95vw;height:95vh;background-color: white;line-height: 6vmin;">
+                <ul id="leaderboard-table" class="collection with-header" style="margin: 0 0 0 0;">
+                        <li class="collection-header" style="font-size:10vmin;line-height:10vmin;padding: 3vmin 5vmin;">Leaderboard</li>
+                        <div id="leaderboard-list" style="overflow-y: scroll;height:65vh;">
+                    </div>
+                </ul>
+                <div style="height: 14vh;">
+                        <div class="row">
+                                <div class="input-field col s11">
+                                        <input value="" id="name2" type="text" class="validate">
+                                        <label id="label" class="active" for="name2">Enter your name to upload your score</label>
+                                </div>
+                                <div class="input-field col s1">
+                                        <a href="#!" class="secondary-content" style="float:left;" onclick="saveToFirebase()"><i class="material-icons">send</i></a>
+                                </div>
+                        </div>
+                </div>
+            </div>
+        </div>
+    
+        <audio id="myAudio">
+            <source src="music.wav" type="audio/mpeg" />
+            Your browser does not support the audio element.
+        </audio>
+        <audio id="pop">
+            <source src="pop.m4a" type="audio/mpeg" />
+            Your browser does not support the audio element.
+        </audio>
+        <audio id="hit">
+            <source src="hit.wav" type="audio/mpeg" />
+            Your browser does not support the audio element.
+        </audio>
+    
+        <script src="Splash.js"></script>
+        <script src="regSW.js"></script>
+        <script src="Over.js"></script>
+    
+    
+        <script src="installbutton.js" defer></script>
+        
+        <script src="https://www.gstatic.com/firebasejs/5.9.2/firebase.js"></script>
+        <script>
+            // Initialize Firebase
+            var config = {
+                apiKey: "AIzaSyCSyyO0guTaCQuw_GQWpckbppuTrtSa2SA",
+                authDomain: "comp4021-ced8f.firebaseapp.com",
+                databaseURL: "https://comp4021-ced8f.firebaseio.com",
+                projectId: "comp4021-ced8f",
+                storageBucket: "comp4021-ced8f.appspot.com",
+                messagingSenderId: "236261422204"
+            };
+            if (!firebase.apps.length) {firebase.initializeApp(config);}
+    
+            function saveToFirebase() {
+                
+                var value = document.getElementById('name2').value;
+                // Add a new document in collection "cities"
+                firebase.firestore().collection("Leaderboard").doc(value).set({
+                    name: value,
+                    score: gscore,
                 })
-                .catch(function (error) {
-                    console.error("Error writing document: ", error);
+                    .then(function () {
+                        console.log("Document successfully written!");
+                        $("#name2").val('');
+                        updateLeaderboard();
+                    })
+                    .catch(function (error) {
+                        console.error("Error writing document: ", error);
+                    });
+            }
+            
+            function updateLeaderboard(){
+                while (document.getElementById("leaderboard-list").firstChild) {
+                    document.getElementById("leaderboard-list").removeChild(document.getElementById("leaderboard-list").firstChild);
+                }
+                firebase.firestore().collection("Leaderboard").orderBy("score", "desc").get().then(function (querySnapshot) {
+                    querySnapshot.forEach(function (doc) {                
+                        var x = document.createElement("li");
+                        x.classList.add("collection-item");
+                        var y = document.createElement("div");
+                        var t1 = document.createTextNode(doc.data().name);  
+                        y.appendChild(t1);
+                        var z = document.createElement("div");
+                        z.classList.add("secondary-content");
+                        var t2 = document.createTextNode(doc.data().score);  
+                        z.appendChild(t2);
+                        x.appendChild(y);
+                        y.appendChild(z);
+                        document.getElementById("leaderboard-list").appendChild(x);
+                        $("#leaderboard-container").center();
+                    });
                 });
-        }
-        email = "ff@gmail.com"
-        saveToFirebase(email);
-        firebase.firestore().collection("Leaderboard").get().then(function (querySnapshot) {
-            querySnapshot.forEach(function (doc) {
-                // doc.data() is never undefined for query doc snapshots
-                console.log(doc.id, " => ", doc.data());
-            });
-        });
-
-    </script>-->
+            }
+        </script>
 </body >
    
    

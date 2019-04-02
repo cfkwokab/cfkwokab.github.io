@@ -18,7 +18,7 @@ var count = 0;
 var missed = false;
 var d = new Date();
 var TimeOfStart = d.getTime();
-var score = 0;
+var gscore = 0;
 var killed = false;
 var progresss = 0;
 var showGlowArray = []
@@ -119,11 +119,11 @@ function addScore() {
     var StartToKill = TimeOfKill - TimeOfStart;
     var KillToGlow = lines[count-1] - StartToKill;
     var earn = 1000-Math.abs(KillToGlow);
-    score = score + earn;
+    gscore = gscore + earn;
     earn = Math.floor(earn);
     document.getElementById("count").textContent = "EARN: "+earn;
-    score = Math.floor(score);
-    document.getElementById("score").textContent = "SCORE: "+score;
+    gscore = Math.floor(gscore);
+    document.getElementById("score").textContent = "SCORE: "+gscore;
     console.log(earn);
 }
 
