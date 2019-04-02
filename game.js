@@ -55,13 +55,6 @@ function hideMonster() {
 
 }
 
-function gameover() {
-    life -= 1; $("#gameOver").fadeIn(1000); 
-    for (var i=0; i<timerArray.length; ++i){
-        clearTimeout(timerArray[i]);
-    }
-    document.getElementById("myAudio").pause();
-}
 
 function popMonster() {
     /*poping = true;

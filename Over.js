@@ -7,7 +7,7 @@ function gameover() {
     }
     document.getElementById("myAudio").pause();
     document.getElementById("label").classList.add("active");
-    updateLeaderboard();
+    setTimeout(updateLeaderboard(),1000);
 }
 
 
