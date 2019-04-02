@@ -57,7 +57,7 @@ function hideMonster() {
 
 
 function popMonster() {
-    /*poping = true;
+    poping = true;
     missed=false;
     $("#monster").center();
     $("#monster").css( 'transform', 'scale(' + scaleing + ',' + scaleing + ')');
@@ -66,7 +66,7 @@ function popMonster() {
         $("#monster").restorem();
     }
     else if (scaleing > 3.0) gameover();
-    else setTimeout(popMonster, 200);*/
+    else setTimeout(popMonster, 200);
 }
 
 function getrandomnumber() {
@@ -100,7 +100,7 @@ function showMonster() {
     document.getElementById("monster").classList.remove("unhide");
         killed = false;
         setTimeout(function(){document.getElementById("monster").classList.add("unhide");},1)
-        //missed = true;
+        missed = true;
 
     // Hide the monster later
     }
