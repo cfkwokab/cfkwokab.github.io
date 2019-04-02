@@ -29,6 +29,7 @@
             padding: 0;
             background: white url(clown.png);
             overflow: hidden;
+            background-position: center;
         }
 
         p {
@@ -142,12 +143,18 @@
             width: 25vmin;
             height: 25vmin;
             box-sizing: border-box;
-            border: 1vmin solid green;
-            border-radius: 15px;
-            background: black;
+            border: 1vmin solid #009688;
+            border-radius: 5vmin;
+            background: rgba(0,0,0,0.9);
+            opacity: 0.99;
         }
-        .hole:hover {
-            transform: translateZ(5px);
+        .hole-yellow {
+            border: 1vmin solid #52c7b8;
+
+        }
+        .hole-blue {
+            border: 1vmin solid #ffc947 !important;
+            opacity: 1 !important;
         }
 
         /* - Set the style of the monster image */
@@ -174,7 +181,7 @@
 <body>
     
   <div class="progress" style="margin: 0 0 0 0;">
-        <div class="determinate" style="width: 0%;"></div>
+        <div class="determinate" style="width: 3%;"></div>
     </div>
     <!-- This div contains all holes -->
     <p style="color: orange; font-size: 5vw; font-weight: bold;position:fixed;left:5%;top:0%;margin:0px;" id="score">SCORE: 0</p>
@@ -182,15 +189,15 @@
     <!-- This is the monster -->
     <div id="container">
         <div id="game-area">
-            <div class="hole"><img class="monster" id="monster" src="nomore.png" alt="Nomore monster" draggable="false"></div>
-            <div class="hole"></div>
-            <div class="hole"></div>
-            <div class="hole"></div>
-            <div class="hole"></div>
-            <div class="hole"></div>
-            <div class="hole"></div>
-            <div class="hole"></div>
-            <div class="hole"></div>
+            <div class="hole z-depth-2"><img class="monster" id="monster" src="nomore.png" alt="Nomore monster" draggable="false"></div>
+            <div class="hole z-depth-2" ></div>
+            <div class="hole z-depth-2"></div>
+            <div class="hole z-depth-2"></div>
+            <div class="hole z-depth-2"></div>
+            <div class="hole z-depth-2"></div>
+            <div class="hole z-depth-2"></div>
+            <div class="hole z-depth-2"></div>
+            <div class="hole z-depth-2"></div>
         </div>
     </div>
     <!-- The Intro screen-->

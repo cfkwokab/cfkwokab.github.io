@@ -84,18 +84,19 @@ function getrandomnumber() {
 }
 function glow_back() {
     //$("#container").css("box-shadow", "inset 0px 0px 50px 50px rgba(255,255,0,0.6)");
-    $(".hole").css("border-color","#008000")
+    $(".hole").css("border-color","#009688")
 }
 function glow() {
         //$("#container").css("box-shadow", "inset 0px 0px 50px 50px rgba(255,255,0,0.6)");
-        $(".hole").css("border-color","#ffff00")
+        $(".hole").css("border-color","#52c7b8")
         setTimeout(glow_back, 200);
 }
 function showMonster() {
     // Find the target div randomly and move the monster
     // to that div
     count = count + 1;
-    document.getElementById("count").textContent = "COUNT: "+count;
+    $(".determinate").css('width', count+3+'%');
+    //document.getElementById("count").textContent = "COUNT: "+count;
     if (missed==true&&poping==false) {document.getElementById("monster").classList.add("unhide");popMonster();}
     else {
     getrandomnumber();
@@ -134,6 +135,12 @@ function startGame() {
     TimeOfStart = d.getTime();
     setTimers();
     // Set up the click handler of the monster
+    $(".monster").on("mousedown", function () {
+        var x = document.getElementById("monster").parentElement;
+        x.classList.add("hole-blue");
+        x.classList.add("z-depth-4");
+        setTimeout(function(){x.classList.remove("hole-blue");x.classList.remove("z-depth-4");}, 200);
+    });
     $(".monster").on("click", function () {
         if (poping == false) { missed=false; addScore(); killMonster();
     }
