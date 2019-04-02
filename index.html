@@ -275,41 +275,73 @@
                 
                 var value = document.getElementById('name2').value;
                 // Add a new document in collection "cities"
-                firebase.firestore().collection("Leaderboard").doc(value).set({
-                    name: value,
-                    score: gscore,
-                })
-                    .then(function () {
+                if ($(window).width() < 900) {
+                    firebase.firestore().collection("Leaderboard-Small").doc(value).set({
+                        name: value,
+                        score: gscore,
+                    }).then(function () {
                         console.log("Document successfully written!");
                         $("#name2").val('');
                         updateLeaderboard();
-                    })
-                    .catch(function (error) {
+                    }).catch(function (error) {
                         console.error("Error writing document: ", error);
                     });
+                }
+                else {
+                    firebase.firestore().collection("Leaderboard").doc(value).set({
+                        name: value,
+                        score: gscore,
+                    }).then(function () {
+                        console.log("Document successfully written!");
+                        $("#name2").val('');
+                        updateLeaderboard();
+                    }).catch(function (error) {
+                        console.error("Error writing document: ", error);
+                    });
+                }
             }
             
             function updateLeaderboard(){
                 while (document.getElementById("leaderboard-list").firstChild) {
                     document.getElementById("leaderboard-list").removeChild(document.getElementById("leaderboard-list").firstChild);
                 }
-                firebase.firestore().collection("Leaderboard").orderBy("score", "desc").get().then(function (querySnapshot) {
-                    querySnapshot.forEach(function (doc) {                
-                        var x = document.createElement("li");
-                        x.classList.add("collection-item");
-                        var y = document.createElement("div");
-                        var t1 = document.createTextNode(doc.data().name);  
-                        y.appendChild(t1);
-                        var z = document.createElement("div");
-                        z.classList.add("secondary-content");
-                        var t2 = document.createTextNode(doc.data().score);  
-                        z.appendChild(t2);
-                        x.appendChild(y);
-                        y.appendChild(z);
-                        document.getElementById("leaderboard-list").appendChild(x);
-                        $("#leaderboard-container").center();
+                if ($(window).width() < 900) {
+                    firebase.firestore().collection("Leaderboard-Small").orderBy("score", "desc").get().then(function (querySnapshot) {
+                        querySnapshot.forEach(function (doc) {                
+                            var x = document.createElement("li");
+                            x.classList.add("collection-item");
+                            var y = document.createElement("div");
+                            var t1 = document.createTextNode(doc.data().name);  
+                            y.appendChild(t1);
+                            var z = document.createElement("div");
+                            z.classList.add("secondary-content");
+                            var t2 = document.createTextNode(doc.data().score);  
+                            z.appendChild(t2);
+                            x.appendChild(y);
+                            y.appendChild(z);
+                            document.getElementById("leaderboard-list").appendChild(x);
+                            $("#leaderboard-container").center();
+                        });
+                    });}
+                else {
+                    firebase.firestore().collection("Leaderboard").orderBy("score", "desc").get().then(function (querySnapshot) {
+                        querySnapshot.forEach(function (doc) {                
+                            var x = document.createElement("li");
+                            x.classList.add("collection-item");
+                            var y = document.createElement("div");
+                            var t1 = document.createTextNode(doc.data().name);  
+                            y.appendChild(t1);
+                            var z = document.createElement("div");
+                            z.classList.add("secondary-content");
+                            var t2 = document.createTextNode(doc.data().score);  
+                            z.appendChild(t2);
+                            x.appendChild(y);
+                            y.appendChild(z);
+                            document.getElementById("leaderboard-list").appendChild(x);
+                            $("#leaderboard-container").center();
+                        });
                     });
-                });
+                }
             }
         </script>
 </body >
