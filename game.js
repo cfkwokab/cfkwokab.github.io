@@ -39,7 +39,7 @@ function setTimers() {
         timerArray.push(setTimeout(showMonster, showTimeArray[i]));
     }
     }, "text");
-    timerArray.push(setTimeout(gameover(), showTimeArray[showTimeArray.length-1]+3000));
+    timerArray.push(setTimeout(gameover, 104269));
     
 }
 
