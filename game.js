@@ -9,7 +9,7 @@ var hideMonsterTimeout;         // Timeout id for hiding the monster
 var life = 3;                   // The player's life
 
 var poping = false;
-var scaleing = 0.2;
+var scaleing = 0.5;
 var popTime = 200;
 var random_number = 0;
 var last_div = 0;
@@ -59,10 +59,10 @@ function hideMonster() {
 function popMonster() {
     poping = true;
     missed=false;
-    $("#monster").center();
     $("#monster").css( 'transform', 'scale(' + scaleing + ',' + scaleing + ')');
+    $("#monster").center();
     scaleing = scaleing + 0.1;
-    if (scaleing <= 0.19) {
+    if (scaleing <= 0.4) {
         $("#monster").restorem();
     }
     else if (scaleing > 3.0) gameover();
@@ -88,6 +88,7 @@ function showMonster() {
     // Find the target div randomly and move the monster
     // to that div
     count = count + 1;
+    console.log(missed+", "+poping);
     $(".determinate").css('width', count+3+'%');
     //document.getElementById("count").textContent = "COUNT: "+count;
     if (missed==true&&poping==false) {document.getElementById("monster").classList.add("unhide");popMonster();}
@@ -182,7 +183,7 @@ jQuery.fn.restorem = function () {
     this.css("left", "0px");
     this.css("width", "100%");
     this.css("transform", "scale(1,1)");
-    scaleing = 0.2;
+    scaleing = 0.5;
     popTime = popTime - 100;
     poping = false;
     return this;

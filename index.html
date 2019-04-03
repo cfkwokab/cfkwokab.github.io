@@ -146,7 +146,7 @@
             border: 1vmin solid #009688;
             border-radius: 5vmin;
             background: rgba(0,0,0,0.9);
-            opacity: 0.99;
+            /*opacity: 0.99;*/
         }
         .hole-yellow {
             border: 1vmin solid #52c7b8;
@@ -154,7 +154,7 @@
         }
         .hole-blue {
             border: 1vmin solid #ffc947 !important;
-            opacity: 1 !important;
+            /*opacity: 1 !important;*/
         }
 
         /* - Set the style of the monster image */
@@ -163,10 +163,14 @@
             user-select: none;
             transform: scale(0);
             width: 100%;
-            transition: all 0.2s;
+            transition: transform 0.2s;
+            z-index: 1002;
         }
         .unhide {
             transform: scale(1);
+        }
+        .hide {
+            transform: scale(0);
         }
         
 
