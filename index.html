@@ -225,6 +225,13 @@
             <div id="leaderboard-container" class="z-depth-3" style="border-radius: 2px;font-size:6vmin;color: black;text-align: left;width:95vw;height:95vh;background-color: white;line-height: 6vmin;">
                 <ul id="leaderboard-table" class="collection with-header" style="margin: 0 0 0 0;">
                         <li class="collection-header" style="font-size:10vmin;line-height:10vmin;padding: 3vmin 5vmin;">Leaderboard</li>
+                        <div class="preloader-wrapper active hide" id="preloader2">
+                            <div class="spinner-layer spinner-yellow-only">
+                                <div class="circle-clipper left"><div class="circle"></div></div>
+                                <div class="gap-patch"><div class="circle"></div></div>
+                                <div class="circle-clipper right"><div class="circle"></div></div>
+                            </div>
+                        </div>
                         <div id="leaderboard-list" style="overflow-y: scroll;height:65vh;">
                     </div>
                 </ul>
@@ -306,6 +313,8 @@
             }
             
             function updateLeaderboard(){
+                $("#preloader2").center();
+                document.getElementById("preloader2").classList.remove("hide");
                 while (document.getElementById("leaderboard-list").firstChild) {
                     document.getElementById("leaderboard-list").removeChild(document.getElementById("leaderboard-list").firstChild);
                 }
@@ -346,6 +355,7 @@
                         });
                     });
                 }
+                setTimeout(function(){document.getElementById("preloader2").classList.add("hide");},1000);
             }
         </script>
 </body >
