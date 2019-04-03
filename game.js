@@ -131,7 +131,7 @@ function startGame() {
     // Set up the click handler of the monster
     $(".monster").on("mousedown", function () {
         var x = document.getElementById("monster").parentElement;
-        window.navigator.vibrate(100);
+        navigator.vibrate(100);
         x.classList.add("hole-blue");
         x.classList.add("z-depth-4");
         setTimeout(function(){x.classList.remove("hole-blue");x.classList.remove("z-depth-4");}, 200);
