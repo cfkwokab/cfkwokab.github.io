@@ -18,7 +18,7 @@ var urlsToCache = [
   'https://fonts.googleapis.com/icon?family=Material+Icons',
   '/iconbw.svg',
   '/Splash.js',
-  '/regSw.js',
+  '/regSW.js',
   '/Over.js',
   '/installbutton.js',
   '/music.wav',
