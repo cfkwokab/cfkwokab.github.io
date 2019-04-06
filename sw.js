@@ -9,7 +9,21 @@ var urlsToCache = [
   'https://code.jquery.com/jquery-3.3.1.min.js',
   'https://fonts.googleapis.com/css?family=Gloria+Hallelujah',
   'https://fonts.gstatic.com/s/gloriahallelujah/v10/LYjYdHv3kUk9BMV96EIswT9DIbW-MIS11zM.woff2',
-  '/sw.js'
+  '/sw.js',
+  '/jquery-3.3.1.min.js',
+  '/materialze.min.js',
+  '/jquery-ui.min.ks',
+  '/game.js',
+  '/font.css',
+  'https://fonts.googleapis.com/icon?family=Material+Icons',
+  '/iconbw.svg',
+  '/Splash.js',
+  '/regSw.js',
+  '/Over.js',
+  '/installbutton.js',
+  'https://www.gstatic.com/firebasejs/5.9.2/firebase.js',
+  '/music.wav',
+  '/time.txt'
 ];
 
 self.addEventListener('install', function(event) {
