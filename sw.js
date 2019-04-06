@@ -21,7 +21,6 @@ var urlsToCache = [
   '/regSw.js',
   '/Over.js',
   '/installbutton.js',
-  'https://www.gstatic.com/firebasejs/5.9.2/firebase.js',
   '/music.wav',
   '/time.txt'
 ];
