@@ -152,7 +152,7 @@ function startGame() {
         setTimeout(function(){x.classList.remove("hole-blue");x.classList.remove("z-depth-4");}, 200);
     });
     $("#monster").on("click", function () {
-        if (poping == false) { missed=false; addScore(); killMonster();
+        if (poping == false) { killMonster();
     }
         else if (poping == true) {
             scaleing = scaleing - 0.15;
@@ -213,6 +213,7 @@ $(document).ready(function () {
 });
 
 function killMonster() {
+    missed=false; addScore();
     document.getElementById("monster").classList.remove("unhide");
 }
 
