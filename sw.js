@@ -6,12 +6,10 @@ var urlsToCache = [
   '/clown.png',
   '/manifest.json',
   '/favicon.ico',
-  'https://code.jquery.com/jquery-3.3.1.min.js',
-  'https://fonts.googleapis.com/css?family=Gloria+Hallelujah',
-  'https://fonts.gstatic.com/s/gloriahallelujah/v10/LYjYdHv3kUk9BMV96EIswT9DIbW-MIS11zM.woff2',
   '/sw.js',
   '/jquery-3.3.1.min.js',
   '/materialize.min.js',
+  '/materialize.min.css',
   '/jquery-ui.min.js',
   '/game.js',
   '/font.css',
@@ -22,7 +20,11 @@ var urlsToCache = [
   '/Over.js',
   '/installbutton.js',
   '/music.mp3',
-  '/time.txt'
+  '/time.js',
+  '/icon-bg.png',
+  '/icon.png',
+  '/6aez4K2oVqwIvtU2Hw.woff2',
+  '/flUhRq6tzZclQEJ-Vdg-IuiaDsNc.woff2'
 ];
 
 self.addEventListener('install', function(event) {
