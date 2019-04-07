@@ -21,7 +21,7 @@ var urlsToCache = [
   '/regSW.js',
   '/Over.js',
   '/installbutton.js',
-  '/music.wav',
+  '/music.mp3',
   '/time.txt'
 ];
 
