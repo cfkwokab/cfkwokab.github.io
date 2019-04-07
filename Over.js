@@ -128,7 +128,7 @@ function gameover() {
 
 function ask_for_name(){
     name = prompt("What's your name?");
-    if (name!="") saveToFirebase(name);
+    if (name!=""||name!=null) saveToFirebase(name);
 }
 
 function replay() {
