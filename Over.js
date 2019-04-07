@@ -110,6 +110,12 @@ function gameover() {
     }
     document.getElementById("myAudio").pause();
     setTimeout(updateLeaderboard(),1000);
+    setTimeout(function(){
+        document.getElementById("leaderboard-container").classList.add("unhide-leaderboard");
+    },1800);
+    setTimeout(function(){
+        document.getElementById("gameover").classList.add("hide-gameover");
+    },2000);
     $(document).on("keydown", function (e) {
         if (e.keyCode == 13) {
             if (submitted==false) ask_for_name();
