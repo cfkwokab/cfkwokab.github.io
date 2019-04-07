@@ -24,11 +24,10 @@ var progresss = 0;
 var showGlowArray = []
 var showTimeArray = []
 var timerArray = [];
-var lines = [];
+//var lines = [];
 
 function setTimers() {
-    $.get('time.txt',  function(data){
-        lines = data.split('\n');
+    //$.get('time.txt',  function(data){lines = data.split('\n');
 
     for (var i=0; i<lines.length; ++i){
         showGlowArray.push(lines[i]-200);
@@ -38,7 +37,7 @@ function setTimers() {
         timerArray.push(setTimeout(glow, showGlowArray[i]));
         timerArray.push(setTimeout(showMonster, showTimeArray[i]));
     }
-    }, "text");
+    //}, "text");
     timerArray.push(setTimeout(gameover, 104269));
     
 }
@@ -96,7 +95,7 @@ function showMonster() {
     // Find the target div randomly and move the monster
     // to that div
     count = count + 1;
-    console.log(missed+", "+poping);
+    //console.log(missed+", "+poping);
     $(".determinate").css('width', count+3+'%');
     //document.getElementById("count").textContent = "COUNT: "+count;
     if (poping==true){}
@@ -134,7 +133,7 @@ function addScore() {
     document.getElementById("count").textContent = "EARN: "+earn;
     gscore = Math.floor(gscore);
     document.getElementById("score").textContent = "SCORE: "+gscore;
-    console.log(earn);
+    //console.log(earn);
 }
 
 function startGame() {

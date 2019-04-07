@@ -1,4 +1,6 @@
 var submitted = false;
+var justSubmitted = false;
+var name = "";
 function yourScore() {
     if (submitted == false){
         var li_1 = document.createElement("li");
@@ -29,6 +31,7 @@ function saveToFirebase(value) {
         }).then(function () {
             console.log("Document successfully written!");
             submitted = true;
+            justSubmitted = true;
             updateLeaderboard();
         }).catch(function (error) {
             console.error("Error writing document: ", error);
@@ -41,6 +44,7 @@ function saveToFirebase(value) {
         }).then(function () {
             console.log("Document successfully written!");
             submitted = true;
+            justSubmitted = true;
             updateLeaderboard();
         }).catch(function (error) {
             console.error("Error writing document: ", error);
@@ -61,6 +65,7 @@ function updateLeaderboard(){
             querySnapshot.forEach(function (doc) {                
                 var x = document.createElement("li");
                 x.classList.add("collection-item");
+                if (doc.data().name == name) x.classList.add("collection-my-item");
                 var y = document.createElement("div");
                 var t1 = document.createTextNode(doc.data().name);  
                 y.appendChild(t1);
@@ -79,6 +84,7 @@ function updateLeaderboard(){
             querySnapshot.forEach(function (doc) {                
                 var x = document.createElement("li");
                 x.classList.add("collection-item");
+                if (doc.data().name == name) x.id = "collection-my-item";
                 var y = document.createElement("div");
                 var t1 = document.createTextNode(doc.data().name);  
                 y.appendChild(t1);
@@ -93,7 +99,7 @@ function updateLeaderboard(){
             });
         });
     }
-    setTimeout(function(){document.getElementById("preloader2").classList.add("hide");},1000);
+    setTimeout(function(){document.getElementById("preloader2").classList.add("hide");if (justSubmitted == true && document.getElementById("collection-my-item"!=null)){document.getElementById("collection-my-item").scrollIntoView(); justSubmitted = false;}},1000);
 }
 function gameover() {
     // Initialize Firebase
@@ -115,7 +121,7 @@ function gameover() {
 }
 
 function ask_for_name(){
-    var name = prompt("What's your name?");
+    name = prompt("What's your name?");
     if (name!="") saveToFirebase(name);
 }
 
