@@ -162,6 +162,8 @@ function startGame() {
 }
 
 function countDown() {
+    
+    
     document.getElementById("myAudio").play();
     // Decrease the remaining time
     timeRemaining = timeRemaining -1;
@@ -177,11 +179,15 @@ function countDown() {
 
 function start() {
     // Decrease the remaining time
-    $(".nav-extended").fadeTo(200, 0);
-    $("#intro p").fadeTo(200, 0);
+    setTimeout(function(e){
+        $("#icon-bg").removeClass("icon-bg-shake");
+        $("#icon").removeClass("icon-shake");
+        $("#icon-bg").removeClass("scale-in");
+        $("#icon").removeClass("scale-in");
+    }, 1)
     $("#intro button").fadeTo(200, 0);
     $("#intro").fadeOut(1000);
-    $("#countDown").fadeIn(100);
+    $("#countDown").fadeIn(1000);
     // Start the countDown screen
     setTimeout(countDown, 1300);
 }

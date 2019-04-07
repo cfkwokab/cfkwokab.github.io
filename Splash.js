@@ -4,8 +4,17 @@ function splash() {
         $("#preloader").fadeOut(100);
     }, 1000)
     setTimeout(function(e){
+        $("#icon-bg").addClass("scale-in");
+    }, 1500)
+    setTimeout(function(e){
         $("#icon").addClass("scale-in");
     }, 1500)
+    setTimeout(function(e){
+        $("#icon").addClass("icon-shake");
+    }, 1900)
+    setTimeout(function(e){
+        $("#icon-bg").addClass("icon-bg-shake");
+    }, 1900)
     setTimeout(function(e){
         $(".start-button").fadeTo(100,1);
     }, 2000)
@@ -24,6 +33,7 @@ function start() {
 }
 
 $(document).ready(function () {
+    $("#icon-bg").center();
     $("#icon").center();
     $("#preloader").center();
     var elems = document.querySelectorAll('.fixed-action-btn');
@@ -32,5 +42,5 @@ $(document).ready(function () {
       hoverEnabled: false
     });
     splash();
-    window.addEventListener('resize', function(){$("#icon").center();$("#preloader").center();}, true);
+    window.addEventListener('resize', function(){$("#icon-bg").center();$("#icon").center();$("#preloader").center();}, true);
 });
