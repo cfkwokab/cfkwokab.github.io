@@ -65,7 +65,7 @@ function updateLeaderboard(){
             querySnapshot.forEach(function (doc) {                
                 var x = document.createElement("li");
                 x.classList.add("collection-item");
-                if (doc.data().name == name) x.classList.add("collection-my-item");
+                if (doc.data().name == name) x.id = "collection-my-item";
                 var y = document.createElement("div");
                 var t1 = document.createTextNode(doc.data().name);  
                 y.appendChild(t1);
