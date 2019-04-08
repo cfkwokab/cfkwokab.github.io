@@ -3,8 +3,8 @@
   "short_name": "Hammer Game",
   "start_url": ".",
   "display": "standalone",
-  "background_color": "#009688",
-  "theme_color": "#009688",
+  "background_color": "#202124",
+  "theme_color": "#202124",
   "orientation": "natural",
   "description": "A simple Hammer Game.",
   "icons": [
