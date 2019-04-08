@@ -99,9 +99,16 @@ function updateLeaderboard(){
             });
         });
     }
-    setTimeout(function(){document.getElementById("preloader2").classList.add("hide");if (justSubmitted == true && document.getElementById("collection-my-item"!=null)){document.getElementById("collection-my-item").scrollIntoView(); justSubmitted = false;}},1000);
+    setTimeout(function(){
+        document.getElementById("preloader2").classList.add("hide");
+        if (justSubmitted == true && document.getElementById("collection-my-item"!=null)){
+            document.getElementById("collection-my-item").scrollIntoView(); 
+            justSubmitted = false;
+        }
+    },1000);
 }
 function gameover() {
+    console.log("over");
     // Initialize Firebase
     document.getElementById("monster").classList.add("hide");
     life -= 1; $("#gameOver").fadeIn(1000); 
@@ -109,26 +116,31 @@ function gameover() {
         clearTimeout(timerArray[i]);
     }
     document.getElementById("myAudio").pause();
-    setTimeout(updateLeaderboard(),1000);
     setTimeout(function(){
         document.getElementById("leaderboard-container").classList.add("unhide-leaderboard");
     },1800);
     setTimeout(function(){
         document.getElementById("gameover").classList.add("hide-gameover");
     },2000);
-    $(document).on("keydown", function (e) {
-        if (e.keyCode == 13) {
+    if (navigator.onLine==true){
+        setTimeout(updateLeaderboard(),1000);
+
+        $(document).on("keydown", function (e) {
+            if (e.keyCode == 13) {
+                if (submitted==false) ask_for_name();
+            }
+        });
+        $(".submit-button").on("click", function () {
             if (submitted==false) ask_for_name();
-        }
-    });
-    $(".submit-button").on("click", function () {
-        if (submitted==false) ask_for_name();
-    });
+        });
+    }
+    else {$("#leaderboard-container").center();}
 }
 
 function ask_for_name(){
     name = prompt("What's your name?");
-    if (name!=""||name!=null) saveToFirebase(name);
+    if (name=="null") {console.log("User cancelled submit");}
+    else if (name!="") saveToFirebase(name);
 }
 
 function replay() {

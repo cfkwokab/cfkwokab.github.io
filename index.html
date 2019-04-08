@@ -217,7 +217,7 @@
     </div>
     <!-- This div contains all holes -->
     <p style="color: orange; font-size: 5vw; font-weight: bold;position:fixed;left:5%;top:0%;margin:0px;" id="score">SCORE: 0</p>
-    <p id="count" style="color: orange; font-size: 5vw; font-weight: bold;position:fixed;right:5%;top:0%;margin:0px;">PROGRESS: 0</p>
+    <!--<p id="count" style="color: orange; font-size: 5vw; font-weight: bold;position:fixed;right:5%;top:0%;margin:0px;">PROGRESS: 0</p>-->
     <!-- This is the monster -->
     <div id="container">
         <div id="game-area">
@@ -238,7 +238,7 @@
         <img id="icon" class="icon-scale-transition scale-transition scale-out" src="iconbw.svg" style="height: 50vmin;">
         <button class="start-button  btn waves-effect waves-light" style="display: none;position: absolute;bottom: 10vh; left: 50%; transform: translateX(-50%);height: 14vmin;line-height: 14vmin;font-size: 4vmin;padding: 0 2.5vw;background-color:#5bda80;color: #202124;" onclick="start()"><i style="font-size: 8vmin;" class="material-icons left">play_arrow</i>START PLAYING</button>
         <a class="waves-effect waves-light btn-flat disabled add-button" style="display: none;position: absolute;bottom: 4vh;left: 50%;transform: translateX(-50%);font-size: 3vmin;color: white;line-height: 6vmin;height: 6vmin;padding: 0 2vw;" >Install</a>
-        <div class="preloader-wrapper active" id="preloader">
+        <div class="preloader-wrapper active hide" id="preloader">
             <div class="spinner-layer spinner-yellow-only">
                 <div class="circle-clipper left"><div class="circle"></div></div>
                 <div class="gap-patch"><div class="circle"></div></div>
@@ -250,7 +250,8 @@
     <!-- The countDown screen -->
     <div id="countDown">3</div>
     <!-- The gameOver screen -->
-    <div id="gameOver"> <p style="margin:0px 0px; font-size:20vmin;" id="gameover" class="gameover">Game over</p>
+    <div id="gameOver"> 
+        <p style="margin:0px 0px; font-size:20vmin;" id="gameover" class="gameover">Game over</p>
             <div id="leaderboard-container" class="z-depth-3 leaderboard-container" style="border-radius: 5px;font-size:6vmin;color: #e8eaed;text-align: left;width:95vw;height:95vh;background-color: #202124;line-height: 6vmin;box-shadow: 0 24px 38px 3px rgba(0,0,0,0.14),0 9px 46px 8px rgba(0,0,0,0.12),0 11px 15px -7px rgba(0,0,0,0.2);">
                 <ul id="leaderboard-table" class="collection with-header" style="margin: 0 0 0 0; background-color: #202124;">
                         <li class="collection-header" style="font-size:10vmin;line-height:10vmin;padding: 3vmin 5vmin;background-color: #202124;">Leaderboard<a class="secondary-content btn-flat waves-effect waves-light" style="height: 10vmin;" onclick="replay()"><i style="font-size: 10vmin;line-height: 10vmin;" class="material-icons">replay</i></a></li>
@@ -262,7 +263,7 @@
                             </div>
                         </div>
                         <div id="leaderboard-list" style="overflow-y: scroll;height:80vh;background-color: #202124;">
-                            <li class="collection-item"><div>You<div id="your-score" class="secondary-content"></div></div></li>
+                            <li class="collection-item"><div>Please check your connection to see the leaderboard.<div id="your-score" class="secondary-content"></div></div></li>
                     </div>
                 </ul>
             </div>

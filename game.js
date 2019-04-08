@@ -130,9 +130,9 @@ function addScore() {
     var earn = 1000-Math.abs(KillToGlow);
     gscore = gscore + earn;
     earn = Math.floor(earn);
-    document.getElementById("count").textContent = "EARN: "+earn;
+    //document.getElementById("count").textContent = "EARN: "+earn;
     gscore = Math.floor(gscore);
-    document.getElementById("score").textContent = "SCORE: "+gscore;
+    document.getElementById("score").textContent = "SCORE: "+gscore+" (+"+earn+")";
     //console.log(earn);
 }
 
@@ -150,14 +150,7 @@ function startGame() {
         x.classList.add("z-depth-1");
         setTimeout(function(){x.classList.remove("hole-blue");x.classList.remove("z-depth-4");}, 200);
     });
-    $("#monster").on("click", function () {
-        if (poping == false) { killMonster();
-    }
-        else if (poping == true) {
-            scaleing = scaleing - 0.15;
-            $("#monster").css('transform', 'scale(' + scaleing + ',' + scaleing + ')');
-        }
-    });
+    $("#monster").on("click", function () {killMonster();});
 }
 
 function countDown() {
@@ -218,8 +211,14 @@ $(document).ready(function () {
 });
 
 function killMonster() {
-    missed=false; addScore();
-    document.getElementById("monster").classList.remove("unhide");
+    if (poping==false){
+        missed=false; addScore();
+        document.getElementById("monster").classList.remove("unhide");
+    }
+    else if (poping==true){
+        scaleing = scaleing - 0.15;
+        $("#monster").css('transform', 'scale(' + scaleing + ',' + scaleing + ')');
+    }
 }
 
 $(document).on("keydown", function (e) {
