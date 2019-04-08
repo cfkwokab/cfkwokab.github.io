@@ -9,15 +9,15 @@
   "description": "A simple Hammer Game.",
   "icons": [
     {
-      "src": "icon.png",
+      "src": "icon-round.png",
       "sizes": "48x48 72x72 96x96 128x128"
     },
     {
-      "src": "icon.png",
+      "src": "icon-round.png",
       "sizes": "144x144 168x168 192x192 256x256"
     },
     {
-      "src": "icon-large.png",
+      "src": "icon-web.png",
       "sizes": "512x512 1024x1024 2048x2048"
     }
   ]

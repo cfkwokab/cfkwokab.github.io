@@ -18,9 +18,6 @@ function splash() {
     setTimeout(function(e){
         $(".start-button").fadeTo(100,1);
     }, 2000)
-    setTimeout(function(e){
-        $(".add-button").fadeTo(100,1);
-    }, 2100)
 }
 
 function start() {
