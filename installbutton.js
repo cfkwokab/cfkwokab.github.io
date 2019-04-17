@@ -9,11 +9,12 @@ window.addEventListener('beforeinstallprompt', (e) => {
   deferredPrompt = e;
     // Update UI to notify the user they can add to home screen
   $(".add-button").fadeTo(1000,1);
+  $(".add-button").removeClass("disabled");
 
   addBtn.addEventListener('click', (e) => {
     // hide our user interface that shows our A2HS button
     $(".add-button").fadeTo(1000,0);
-    $(".add-button").removeClass("disabled");
+    
     // Show the prompt
     deferredPrompt.prompt();
     // Wait for the user to respond to the prompt
