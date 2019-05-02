@@ -146,6 +146,7 @@ function ask_for_name(){
 function replay() {
     var c = confirm("Want to replay?");
     if (c==true){
-        location.reload(false); 
+        document.getElementById("leaderboard-container").classList.remove("unhide-leaderboard");
+        setTimeout(function(){location.reload(false);}, 1000);
     }
 }

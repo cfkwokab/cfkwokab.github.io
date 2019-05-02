@@ -125,7 +125,7 @@ function clickEffect() {
 
 function startGame() {
     // Hide the countDown timer 
-    $("#countDown").slideUp(400);
+    $("#countDown").hide();
     // Show the monster the first time
     d = new Date();
     TimeOfStart = d.getTime();
@@ -143,11 +143,23 @@ function countDown() {
     document.getElementById("myAudio").play();
     // Decrease the remaining time
     timeRemaining = timeRemaining -1;
+    if (timeRemaining == 3) {
+        document.getElementById("countDown").textContent = timeRemaining;
+        document.getElementById("countDown").style.backgroundColor = "rgba(0,0,0, 0.7)";
+    }
+    if (timeRemaining == 2) {
+        document.getElementById("countDown").textContent = timeRemaining;
+        document.getElementById("countDown").style.backgroundColor = "rgba(0,0,0, 0.6)";
+    }
+    if (timeRemaining == 1) {
+        document.getElementById("countDown").textContent = timeRemaining;
+        document.getElementById("countDown").style.backgroundColor = "rgba(0,0,0, 0.5)";
+    }
     if (timeRemaining == 0) {
-        document.getElementById("countDown").textContent = "Start"; 
+        document.getElementById("countDown").textContent = "Start";
+        document.getElementById("countDown").style.backgroundColor = "rgba(0,0,0, 0.4)"; 
         setTimeout(startGame, 1000);  // otherwise, start the game when the time is up
-        }
-    else {document.getElementById("countDown").textContent = timeRemaining;}
+    }
     // Continue the countDown if there is still time;
     if (timeRemaining > 0) setTimeout(countDown, 1000);
 }
