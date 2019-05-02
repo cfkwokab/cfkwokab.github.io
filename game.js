@@ -24,10 +24,9 @@ var progresss = 0;
 var showGlowArray = []
 var showTimeArray = []
 var timerArray = [];
-//var lines = [];
+
 
 function setTimers() {
-    //$.get('time.txt',  function(data){lines = data.split('\n');
 
     for (var i=0; i<lines.length; ++i){
         showGlowArray.push(lines[i]-200);
@@ -37,7 +36,7 @@ function setTimers() {
         timerArray.push(setTimeout(glow, showGlowArray[i]));
         timerArray.push(setTimeout(showMonster, showTimeArray[i]));
     }
-    //}, "text");
+
     timerArray.push(setTimeout(gameover, 104269));
     
 }
@@ -47,17 +46,11 @@ function setTimers() {
 function hideMonster() {
     $("#monster").hide();
     popMonster();
-    // Hide the monster
-    
-
-    // Show the monster later again
-
 }
 
 
 function popMonster() {
     poping = true;
-    //missed=false;
     $("#monster").css( 'transform', 'scale(' + scaleing + ',' + scaleing + ')');
     $("#monster").center();
     scaleing = scaleing + 0.1;
@@ -83,11 +76,9 @@ function getrandomnumber() {
     if (random_number == last_div) getrandomnumber();
 }
 function glow_back() {
-    //$("#container").css("box-shadow", "inset 0px 0px 50px 50px rgba(255,255,0,0.6)");
     $(".hole").css("border-color","#009688")
 }
 function glow() {
-        //$("#container").css("box-shadow", "inset 0px 0px 50px 50px rgba(255,255,0,0.6)");
         $(".hole").css("border-color","#52c7b8")
         setTimeout(glow_back, 200);
 }
@@ -95,12 +86,9 @@ function showMonster() {
     // Find the target div randomly and move the monster
     // to that div
     count = count + 1;
-    //console.log(missed+", "+poping);
     $(".determinate").css('width', count+3+'%');
-    //document.getElementById("count").textContent = "COUNT: "+count;
     if (poping==true){}
     else if (missed==true&&poping==false) {
-        //document.getElementById("monster").classList.remove("hide");
         document.getElementById("monster").classList.add("unhide");
         popMonster();
     }
@@ -111,14 +99,8 @@ function showMonster() {
     $("#monster").appendTo(random_div);
     // Show the monster
     setTimeout(function(){document.getElementById("monster").classList.add("unhide");},1)
-    //document.getElementById("monster").classList.remove("unhide");
     killed = false;
-    //setTimeout(function(){
-        //document.getElementById("monster").classList.add("unhide");
-    //    document.getElementById("monster").classList.remove("hide");},1)
     missed = true;
-
-    // Hide the monster later
     }
 }
 
@@ -130,10 +112,15 @@ function addScore() {
     var earn = 1000-Math.abs(KillToGlow);
     gscore = gscore + earn;
     earn = Math.floor(earn);
-    //document.getElementById("count").textContent = "EARN: "+earn;
     gscore = Math.floor(gscore);
     document.getElementById("score").textContent = "SCORE: "+gscore+" (+"+earn+")";
-    //console.log(earn);
+}
+
+function clickEffect() {
+    var x = document.getElementById("monster").parentElement;
+    x.classList.add("hole-blue");
+    x.classList.add("z-depth-1");
+    setTimeout(function(){x.classList.remove("hole-blue");x.classList.remove("z-depth-4");}, 200);
 }
 
 function startGame() {
@@ -145,17 +132,14 @@ function startGame() {
     setTimers();
     // Set up the click handler of the monster
     $("#monster").on("mousedown", function () {
-        var x = document.getElementById("monster").parentElement;
-        x.classList.add("hole-blue");
-        x.classList.add("z-depth-1");
-        setTimeout(function(){x.classList.remove("hole-blue");x.classList.remove("z-depth-4");}, 200);
+        clickEffect();
     });
-    $("#monster").on("click", function () {killMonster();});
+    $("#monster").on("click", function () {
+        killMonster();
+    });
 }
 
 function countDown() {
-    
-    
     document.getElementById("myAudio").play();
     // Decrease the remaining time
     timeRemaining = timeRemaining -1;
@@ -193,7 +177,6 @@ jQuery.fn.center = function () {
 
 
 $(document).ready(function () { 
-    //$('.monster').clickFireworks();
     if ($(window).width() < 900) {       // if width is less than 600px
         $(".hole")[8].remove();
         $(".hole")[7].remove();
@@ -222,35 +205,38 @@ function killMonster() {
 }
 
 $(document).on("keydown", function (e) {
-    if (e.keyCode == 103) {
-        if ($(".hole").eq(0).children().length) {  killMonster(); };
-    }
-    if (e.keyCode == 104) {
-        if ($(".hole").eq(1).children().length) {  killMonster(); };
-    }
-    if (e.keyCode == 105) {
-        if ($(".hole").eq(2).children().length) {  killMonster(); };
-    }
-    if (e.keyCode == 100) {
-        if ($(".hole").eq(3).children().length) {  killMonster(); };
-    }
-    if (e.keyCode == 101) {
-        if ($(".hole").eq(4).children().length) {  killMonster(); };
-    }
-    if (e.keyCode == 102) {
-        if ($(".hole").eq(5).children().length) {  killMonster(); };
-    }
-    if (e.keyCode == 97) {
-        if ($(".hole").eq(6).children().length) {  killMonster(); };
-    }
-    if (e.keyCode == 98) {
-        if ($(".hole").eq(7).children().length) {  killMonster(); };
-    }
-    if (e.keyCode == 99) {
-        if ($(".hole").eq(8).children().length) {  killMonster(); };
-    }
-    if (e.keyCode == 27) {
-        gameover();
+    if (poping==true) {killMonster();}
+    else {
+        if (e.keyCode == 103) {
+            if ($(".hole").eq(0).children().length) { clickEffect(); killMonster(); };
+        }
+        if (e.keyCode == 104) {
+            if ($(".hole").eq(1).children().length) { clickEffect(); killMonster(); };
+        }
+        if (e.keyCode == 105) {
+            if ($(".hole").eq(2).children().length) { clickEffect(); killMonster(); };
+        }
+        if (e.keyCode == 100) {
+            if ($(".hole").eq(3).children().length) { clickEffect(); killMonster(); };
+        }
+        if (e.keyCode == 101) {
+            if ($(".hole").eq(4).children().length) { clickEffect(); killMonster(); };
+        }
+        if (e.keyCode == 102) {
+            if ($(".hole").eq(5).children().length) { clickEffect(); killMonster(); };
+        }
+        if (e.keyCode == 97) {
+            if ($(".hole").eq(6).children().length) { clickEffect(); killMonster(); };
+        }
+        if (e.keyCode == 98) {
+            if ($(".hole").eq(7).children().length) { clickEffect(); killMonster(); };
+        }
+        if (e.keyCode == 99) {
+            if ($(".hole").eq(8).children().length) { clickEffect(); killMonster(); };
+        }
+        if (e.keyCode == 27) {
+            gameover();
+        }
     }
 });
 

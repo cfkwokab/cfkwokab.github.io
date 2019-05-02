@@ -13,7 +13,7 @@ window.addEventListener('beforeinstallprompt', (e) => {
 
   addBtn.addEventListener('click', (e) => {
     // hide our user interface that shows our A2HS button
-    $(".add-button").fadeTo(1000,0);
+    $(".add-button").fadeTo(500,0);
     
     // Show the prompt
     deferredPrompt.prompt();
