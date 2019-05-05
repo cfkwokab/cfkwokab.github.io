@@ -21,7 +21,9 @@ var urlsToCache = [
   '/time.js',
   '/icon-bg.png',
   '/6aez4K2oVqwIvtU2Hw.woff2',
-  '/flUhRq6tzZclQEJ-Vdg-IuiaDsNc.woff2'
+  '/flUhRq6tzZclQEJ-Vdg-IuiaDsNc.woff2',
+  '/icon-round.png',
+  '/icon-web.png'
 ];
 
 self.addEventListener('install', function(event) {
