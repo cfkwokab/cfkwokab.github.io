@@ -16,6 +16,11 @@ function splash() {
     setTimeout(function(e){
         $(".start-button").fadeTo(100,1);
     }, 2000)
+    setTimeout(function(e){
+        $("#icon-bg").center();
+        $("#icon").center();
+        $("#preloader").center();
+    }, 2000)
 }
 
 function start() {
