@@ -16,7 +16,12 @@ var urlsToCache = [
   '/Splash.js',
   '/regSW.js',
   '/Over.js',
-  '/installbutton.js'
+  '/installbutton.js',
+  '/music.mp3',
+  '/time.js',
+  '/icon-bg.png',
+  '/6aez4K2oVqwIvtU2Hw.woff2',
+  '/flUhRq6tzZclQEJ-Vdg-IuiaDsNc.woff2'
 ];
 
 self.addEventListener('install', function(event) {
