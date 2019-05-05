@@ -24,7 +24,7 @@ function yourScore() {
 }
 function saveToFirebase(value) {
     // Add a new document in collection "cities"
-    if ($(window).width() < 900) {
+    if ($(window).width() < 600) {
         firebase.firestore().collection("Leaderboard-Small").doc(value).set({
             name: value,
             score: gscore,
@@ -60,7 +60,7 @@ function updateLeaderboard(){
         document.getElementById("leaderboard-list").removeChild(document.getElementById("leaderboard-list").firstChild);
     }
     if (submitted==false)yourScore();
-    if ($(window).width() < 900) {
+    if ($(window).width() < 600) {
         firebase.firestore().collection("Leaderboard-Small").orderBy("score", "desc").get().then(function (querySnapshot) {
             querySnapshot.forEach(function (doc) {                
                 var x = document.createElement("li");

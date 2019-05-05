@@ -189,7 +189,7 @@ jQuery.fn.center = function () {
 
 
 $(document).ready(function () { 
-    if ($(window).width() < 900) {       // if width is less than 600px
+    if ($(window).width() < 600) {       // if width is less than 600px
         $(".hole")[8].remove();
         $(".hole")[7].remove();
         $(".hole")[6].remove();
