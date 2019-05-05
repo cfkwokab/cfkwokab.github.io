@@ -33,6 +33,9 @@ self.addEventListener('install', function(event) {
         console.log('Opened cache');
         return cache.addAll(urlsToCache);
       })
+      .catch(function (err) {
+        console.log('Cache opening failed: ', err);
+    })
   );
 });
 
