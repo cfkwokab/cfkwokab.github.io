@@ -8,6 +8,10 @@ var urlsToCache = [
   '/sw.js',
   '/jquery-3.3.1.min.js',
   '/materialize.min.js',
+  '/materialize.min.css',
+  '/jquery-ui.min.js',
+  '/game.js',
+  '/font.css'
 ];
 
 self.addEventListener('install', function(event) {
