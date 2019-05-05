@@ -21,7 +21,7 @@ var urlsToCache = [
   '/music.mp3',
   '/time.js',
   '/icon-bg.png',
-  '/icon.png',
+  '/iconbw.svg',
   '/6aez4K2oVqwIvtU2Hw.woff2',
   '/flUhRq6tzZclQEJ-Vdg-IuiaDsNc.woff2'
 ];
