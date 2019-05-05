@@ -24,7 +24,6 @@ var urlsToCache = [
   '/flUhRq6tzZclQEJ-Vdg-IuiaDsNc.woff2',
   '/icon-round.png',
   '/icon-web.png',
-  'https://www.gstatic.com/firebasejs/5.9.2/firebase.js'
 ];
 
 self.addEventListener('install', function(event) {
