@@ -1,11 +1,10 @@
-var CACHE_NAME = 'my-site-cache-v1';
+var CACHE_NAME = 'my-site-cache-v2';
 var urlsToCache = [
   '/',
   '/index.html',
   '/nomore.png',
   '/clown.png',
   '/manifest.json',
-  '/favicon.ico',
   '/sw.js',
   '/jquery-3.3.1.min.js',
   '/materialize.min.js',
