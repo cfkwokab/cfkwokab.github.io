@@ -4,7 +4,10 @@ var urlsToCache = [
   '/index.html',
   '/nomore.png',
   '/clown.png',
-  '/manifest.json'
+  '/manifest.json',
+  '/sw.js',
+  '/jquery-3.3.1.min.js',
+  '/materialize.min.js',
 ];
 
 self.addEventListener('install', function(event) {
