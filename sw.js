@@ -48,7 +48,7 @@ self.addEventListener('fetch', function(event) {
         if (response) {
           return response;
         }
-        return fetch(event.request);
+        return fetch(event.request).then(function(response) {return response;});
       }
     )
   );
