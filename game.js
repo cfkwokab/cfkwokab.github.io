@@ -24,6 +24,7 @@ var progresss = 0;
 var showGlowArray = []
 var showTimeArray = []
 var timerArray = [];
+var missed_count = 0;
 
 
 function setTimers() {
@@ -76,11 +77,15 @@ function getrandomnumber() {
     if (random_number == last_div) getrandomnumber();
 }
 function glow_back() {
-    $(".hole").css("border-color","#009688")
+    if (missed_count==2){$(".hole").css("border-color","#b71c1c")}
+    else if (missed_count==1){$(".hole").css("border-color","#f57f17")}
+    else if (missed_count==0){$(".hole").css("border-color","#009688")}
 }
 function glow() {
-        $(".hole").css("border-color","#52c7b8")
-        setTimeout(glow_back, 200);
+    if (missed_count==2){$(".hole").css("border-color","#f05545")}
+    else if (missed_count==1){$(".hole").css("border-color","#ffb04c")}
+    else if (missed_count==0){$(".hole").css("border-color","#52c7b8")}
+    setTimeout(glow_back, 200);
 }
 function showMonster() {
     // Find the target div randomly and move the monster
@@ -89,8 +94,13 @@ function showMonster() {
     $(".determinate").css('width', count+3+'%');
     if (poping==true){}
     else if (missed==true&&poping==false) {
-        document.getElementById("monster").classList.add("unhide");
-        popMonster();
+        if (missed_count==1) {missed_count = missed_count +1; $(".hole").css("border-color","#b71c1c");}
+        else if (missed_count==0) {missed_count = missed_count +1; $(".hole").css("border-color","#f57f17");}
+        else if (missed_count==2){
+            missed_count=0;
+            document.getElementById("monster").classList.add("unhide");
+            popMonster();
+        }
     }
     else {
     getrandomnumber();
