@@ -12,7 +12,6 @@ var urlsToCache = [
   '/jquery-ui.min.js',
   '/game.js',
   '/font.css',
-  'https://fonts.googleapis.com/icon?family=Material+Icons',
   '/iconbw.svg',
   '/Splash.js',
   '/regSW.js',
