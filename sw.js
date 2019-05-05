@@ -1,28 +1,6 @@
 var CACHE_NAME = 'my-site-cache-v1';
 var urlsToCache = [
-  '/',
-  '/index.html',
-  '/nomore.png',
-  '/clown.png',
-  '/manifest.json',
-  '/sw.js',
-  '/jquery-3.3.1.min.js',
-  '/materialize.min.js',
-  '/materialize.min.css',
-  '/jquery-ui.min.js',
-  '/game.js',
-  '/font.css',
-  '/iconbw.svg',
-  '/Splash.js',
-  '/regSW.js',
-  '/Over.js',
-  '/installbutton.js',
-  '/music.mp3',
-  '/time.js',
-  '/icon-bg.png',
-  '/iconbw.svg',
-  '/6aez4K2oVqwIvtU2Hw.woff2',
-  '/flUhRq6tzZclQEJ-Vdg-IuiaDsNc.woff2'
+  '/'
 ];
 
 self.addEventListener('install', function(event) {
